@@ -1,0 +1,71 @@
+[
+    {
+        id:'0x000',
+        payload:{
+            most_recent_active:'time-stamp'
+            participants:[
+                {
+                    name:'prakhar',
+                    address:'----';
+                },
+                {
+                    name:'prayag',
+                    address:'----';
+                }
+            ],
+            messages:[
+                {
+                    text:'prakhar',
+                    senderAddress:'----';
+                    timestamp:'give time stamp'
+                },
+                {
+                    text:'prakhar',
+                    senderAddress:'----';
+                    timestamp:'give time stamp'
+                }
+            ]
+        }
+    },
+    {
+        id:'0x000',
+        payload:{
+            most_recent_active:'time-stamp'
+            participants:[
+                {
+                    name:'prakhar',
+                    address:'----';
+                },
+                {
+                    name:'prayag',
+                    address:'----';
+                }
+            ],
+            messages:[
+                {
+                    text:'prakhar',
+                    senderAddress:'----';
+                    timestamp:'give time stamp'
+                },
+                {
+                    text:'prakhar',
+                    senderAddress:'----';
+                    timestamp:'give time stamp'
+                }
+            ]
+        }
+    }
+]
+
+
+<<<<<<<<<< Structure >>>>>>>>>>>
+
+ChatRoom
+|- SideBar
+|- ChatWindow
+    |-EmptyWindow
+    |-GroupWindow
+        |-ChatRoomHeader
+        |-Chats
+            |-Chat
+        |-SendMessages

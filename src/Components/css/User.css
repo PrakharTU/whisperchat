@@ -1,0 +1,32 @@
+.User {
+    display: flex;
+    align-items: flex-start;
+    padding: 1rem;
+    background: #ffffff;;
+    border-bottom: 1px solid white;
+    cursor: pointer;
+    font-family:Avenir,Helvetica,Arial,sans-serif;
+    border-bottom: 1px solid #F2F2F2;
+  }
+
+  .User:hover{
+    background: #F8F8F8;
+  }
+  .User__details {
+    display: block;
+    padding: 0 0 0 1rem;
+  }
+
+  .User__details-name {
+    margin: 0;
+    line-height: 26px;
+    font-weight: 400;
+    font-size: 20px;
+    color: #232323;
+  }
+
+  .User__details-address {
+    margin: 0;
+    color: black;
+    font-size:12px;
+  }

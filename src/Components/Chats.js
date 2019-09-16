@@ -7,16 +7,35 @@ const Chat = ({ message, sender}) => {
     );
   };
   
-const Chats = ({activeMessages,myDetails})=>{
-    const {groupAddress,payload} = activeMessages;
+
+class Chats extends React.Component{
+  constructor(props) {
+    super(props);
+    this.chatsRef = React.createRef();
+  }
+
+  componentDidMount() {
+    this.scrollToBottom();
+  }
+  componentDidUpdate() {
+    this.scrollToBottom();
+  }
+
+  scrollToBottom = () => {
+    this.chatsRef.current.scrollTop = this.chatsRef.current.scrollHeight;
+  };
+  
+  render(){
+    const {activeMessages,myDetails} = this.props;
     let i=0;
+    const {groupAddress,payload} = activeMessages;
     return(
-      <div className="Chats scrollBar">
+      <span className="Chats scrollBar" ref={this.chatsRef}>
         {payload.messages.map(message => (
           <Chat message={message} sender={myDetails.address} key={i++} />
         ))}
-      </div>
+      </span>
     );
+  }
 }
-
 export default Chats;

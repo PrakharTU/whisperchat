@@ -1,0 +1,18 @@
+<div>
+          <div>
+            My publick key: {this.state.asymPubKey}
+            Recipient's public key: 
+            <input name="recipientPubKey"
+              onChange={this.handleChange} 
+              value={this.state.recipientPubKey}
+            />
+          </div>
+          {this.state.msgs.map((msg,i)=><div key={i}><b>{msg.name}</b>: {msg.text}</div>)}
+          Please type a message: 
+          <input name="text"
+            onChange={this.handleChange} 
+            value={this.state.text}
+            onKeyPress={this.handleKeyPressReceipent}
+          />
+          <button onClick={this.sendMessage}>Send</button>
+        </div>

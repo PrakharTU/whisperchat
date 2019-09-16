@@ -2,7 +2,8 @@ import React from 'react';
 import './App.css';
 import Web3 from 'web3';
 import {decodeFromHex, encodeToHex} from './hexutils';
-// import SenderScreen from './Components/SenderScreen';
+import logo from './logo.png';
+import SenderScreen from './Components/SenderScreen';
 import ChatRoom from './Components/ChatRoom';
 
 const defaultRecipientPubKey = "";
@@ -20,7 +21,7 @@ class App extends React.Component{
 			name: "",
 			asymKeyId: "",
 			sympw: "",
-			configured: false,
+			configured: true,
 			topic: defaultTopic,
 			recipientPubKey: defaultRecipientPubKey,
 			asymPubKey: ""
@@ -126,70 +127,57 @@ class App extends React.Component{
       this.sendMessage();
     }
   }
-  renderBody(){
-    if(!this.state.configured){
-      return(
-        <div>
-          enter your key-id pair :
-          <input type="text" value={this.state.asymKeyId} 
-            onChange={this.handleChange} 
-            name="asymKeyId" 
-            onKeyPress={this.handleKeyPress}/>
-            <div>
-                Asymetric key id: {this.state.asymPubKey}<br/>
-                Public key: {this.state.asymKeyId}
-              </div>
-            username: 
-            <input name="name" 
-              onChange={this.handleChange} 
-              value={this.state.name}  
-            /><br/>
-            <button onClick={this.configWithKey} >Start</button>
-        </div>
-      );
-    }
-    else{
-      return(
-        <div>
-          <div>
-            My publick key: {this.state.asymPubKey}
-            Recipient's public key: 
-            <input name="recipientPubKey"
-              onChange={this.handleChange} 
-              value={this.state.recipientPubKey}
-            />
+
+  renderLoginScreen(){
+    return(
+      <div style={{display:'flex',justifyItems:'center',height:'100vh',margin:'100px auto'}}>
+        <div className="loginWrapper">
+          <div style={{display:'flex',justifyContent:'center'}}>
+            <img src={logo} alt="Logo" style={{width:100}} />
           </div>
-          {this.state.msgs.map((msg,i)=><div key={i}><b>{msg.name}</b>: {msg.text}</div>)}
-          Please type a message: 
-          <input name="text"
-            onChange={this.handleChange} 
-            value={this.state.text}
-            onKeyPress={this.handleKeyPressReceipent}
-          />
-          <button onClick={this.sendMessage}>Send</button>
+          <div className="login-heading">Whisper Chat App</div>
+          {/* <button onClick={()=>this.get_key_id_pair_from_pvt_key('0xd100e4e74c2b9a6993357706eba3f9cac5cd6893800c3da453b06b6c21e8ea98')}>
+            get keyid from pvtkey
+          </button> */}
+          <div style={{textAlign:'center'}}>
+          <div className="group">
+            <input type="text" value={this.state.asymKeyId} 
+              onChange={this.handleChange} 
+              name="asymKeyId" 
+              onKeyPress={this.handleKeyPress}
+              required  
+            />
+              <span className="highlight"></span><span className="bar"></span>
+              <label>Enter Your Key ID Pair</label>
+
+            </div>
+            <div className="group">
+              <input name="name" 
+                  onChange={this.handleChange} 
+                  value={this.state.name} 
+                  required 
+              />
+              <span className="highlight"></span><span className="bar"></span>
+              <label>Username</label>
+            </div>
+              <button onClick={this.configWithKey} >Start</button>
+          </div>
         </div>
-      );
-    }
+      </div>
+    )
   }
-  
   render(){
     return (
       <div>
-        {/* <SenderScreen/> */}
-        <ChatRoom/>
-        
-        {/* ----------------------------- */}
-
-
-
-        {/* <h1>Whisper Example Chat Application</h1>
-        <button onClick={()=>this.get_key_id_pair_from_pvt_key('0xd100e4e74c2b9a6993357706eba3f9cac5cd6893800c3da453b06b6c21e8ea98')}>
-          get keyid from pvtkey
-        </button>
-        {this.renderBody()} */}
+        {!this.state.configured&&this.renderLoginScreen()}
+        {this.state.configured&&<div style={{height:'100vh',overflow:'hidden'}}>
+          <ChatRoom/>
+        </div>}
       </div>
+      
     );
   }
 }
+
 
 export default App;

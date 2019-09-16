@@ -26,7 +26,7 @@ const styles = {
         width:'100%',
     },
     sendmessages:{
-        height:'50px',
+        height:'60px',
         width:'100%',
         background:'#EEEEEE'
     }

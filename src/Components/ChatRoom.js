@@ -12,11 +12,12 @@ class ChatRoom extends React.Component{
                 name: 'Prakhar',
                 address: '0x325'
             },
-            contacts:{},
-            messageData:{}
+            contacts:[],
+            messageData:[]
         }
         this.updateActiveAddress = this.updateActiveAddress.bind(this);
         this.onMessageSubmit = this.onMessageSubmit.bind(this);
+        this.onContactAdd = this.onContactAdd.bind(this);
     }
 
     componentWillMount(){
@@ -27,11 +28,10 @@ class ChatRoom extends React.Component{
     }
 
     onContactAdd(contract){
-        const newContacts = this.state.contacts;
-        newContacts.push(contract);
         this.setState({
-            contacts:newContacts
+            contacts:[contract,...this.state.contacts]
         })
+        
     }
     onMessageSubmit(payload){
         const {chatRoomAddress, text, senderAddress  } = payload;
@@ -44,13 +44,12 @@ class ChatRoom extends React.Component{
                     senderAddress,
                     timestamp:'we wiil update it soon'
                 })  
-                console.log('Inside ChatRoom, Found chats...'); 
+                // console.log('Inside ChatRoom, Found chats...'); 
             }
         }
-        console.log('Inside ChatRoom, Submitting Messages');
+        // console.log('Inside ChatRoom, Submitting Messages');
         console.log(newMessageData)
         this.setState({messageData:newMessageData})
-
     }
     
     getDummyContacts(howMany){
@@ -110,7 +109,6 @@ class ChatRoom extends React.Component{
         return(
             <div style={styles.chatroom}>
                 <SideBar 
-                    style={styles.sidebar} 
                     updateStateProp={this.updateActiveAddress} 
                     contacts={this.state.contacts}
                     onContactAdd = {this.onContactAdd}
@@ -131,14 +129,7 @@ const styles = {
     chatroom:{
         flex:1,
         flexDirection:'row',
-        height:'100%',
         display:'flex',
-    },
-    sidebar:{
-        width:350,
-        overflowY:'auto',
-        height:'100vh',
-        borderRight:'1px solid #e0e0e0'
     },
     chatwindow:{
         flex:1,
